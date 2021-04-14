@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>E-commerce Registeration</title>
+</head>
+
+<body>
+    <ul>
+        <li><span>E-commerce</span></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="#">login</a></li>
+    </ul>
+    <form class='formRegisteration'>
+        <div class="container">
+            <h2>Register</h2>
+            <hr>
+            <input type="text" placeholder="Enter Your Name" name="name" id="name" required>
+            <input type="email" placeholder="Enter Email" name="email" id="email" required>
+            <input type="password" placeholder="Enter Password" name="password" id="password" required>
+            <input type="number" placeholder="Enter Phone Number" name="phone" id="phone" required>
+            <input type="number" placeholder="Enter Age" name="age" id="age" required>
+            <button type="submit" id="registerbtn">Register</button>
+        </div>
+    </form>
+</body>
+
+</html>
+<script>
+    $(document).ready(function () {
+        $('.formRegisteration').submit(function (event) {
+            event.preventDefault();
+            var nameValue = $('#name').val();
+            var emailID = $('#email').val();
+            var passValue = $('#password').val();
+            var ageValue = $('#age').val();
+            var phoneValue = $('#phone').val();
+            // for email validation position of @ and .
+            var atposition = emailID.indexOf("@");
+            var dotposition = emailID.lastIndexOf(".");
+            //validating
+            if (nameValue == '' || ageValue == '' || phoneValue == '' || emailID == '' || passValue == '') {
+                alert("Please fill all the fields!")
+                return false;
+            }
+            else if (atposition < 1 || dotposition < atposition + 2 || dotposition + 2 >= emailID.length) {
+                alert("Please enter a valid e-mail address");
+                return false;
+            }
+            else if (nameValue.length < 3 || ageValue < 2 || ageValue > 100 || phoneValue.length < 9 || phoneValue.length > 13 || passValue.length < 8) {
+                alert('enter valid info\nname should be of minimam 3 character\nage should be between 2 and 100\n phonenumber length 9 to 13 digits\npassword length should be greater then 8')
+                return false;
+            }
+            else {
+                const urlLink = 'http://localhost:3000/registeration'
+                $.post(urlLink, {
+                    name: nameValue,
+                    email: emailID,
+                    pass: passValue,
+                    phone: phoneValue,
+                    age: ageValue,
+                },
+                    function (data, status) {
+                        var result = JSON.stringify(data)
+                        alert("Data: " + result + "\nStatus: " + status)
+                    })
+            }
+
+        })
+    })
+</script>
