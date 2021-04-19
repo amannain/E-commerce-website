@@ -53,5 +53,5 @@ app.post('/registeration', (req, res) => {
 });
 
 app.listen(PORT, () => {
-	console.log(`app listening at http://localhost:${PORT}`);
+	console.log(`listen to me http://localhost:${PORT}`);
 });
