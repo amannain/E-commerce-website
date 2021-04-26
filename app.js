@@ -1,14 +1,7 @@
 const express = require('express');
 var MongoClient = require('mongodb').MongoClient;
 var bodyParser = require('body-parser');
-<<<<<<< HEAD
 var ObjectID = require('mongodb').ObjectID;
-=======
-<<<<<<< HEAD
-var ObjectID = require('mongodb').ObjectID;
-=======
->>>>>>> fe74960382a2a7d5bb60009cf4b539e865202ec9
->>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
 
 const app = express();
 const PORT = 3000;
@@ -37,7 +30,6 @@ app.post('/registeration', (req, res) => {
 				res.send(data);
 			} else {
 				var dbo = db.db('Ecommerce');
-<<<<<<< HEAD
 				dbo.collection('User').findOne({ email: email }, function (err, rslt) {
 					if (!rslt) {
 						var newUser = {
@@ -61,23 +53,6 @@ app.post('/registeration', (req, res) => {
 					}else{
 						res.statusCode = 400;
 						data = { result: 'User with this email ID already exists!' };
-=======
-				var newUser = {
-					name: name,
-					email: email,
-					age: age,
-					phoneNumber: phone,
-					password: pass,
-				};
-				dbo.collection('User').insertOne(newUser, function (err, result) {
-					if (err) {
-						res.statusCode = 400;
-						data = { result: 'Registeration failed please try again' };
-						res.send(data);
-					} else {
-						res.statusCode = 200;
-						data = { result: 'Registeration Successfull' };
->>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
 						res.send(data);
 					}
 				});
@@ -86,10 +61,6 @@ app.post('/registeration', (req, res) => {
 	}
 });
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
 app.post('/userLogin', (req, res) => {
 	var email = req.body.email.trim();
 	var pass = req.body.pass.trim();
@@ -145,10 +116,6 @@ app.post('/editData', function (req, res) {
 	var age = req.body.age.trim();
 	var phone = req.body.phone.trim();
 	var data = { result: 'default' };
-<<<<<<< HEAD
-=======
-	console.log(id);
->>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	if (name == '' || email == '' || pass == '' || age == '' || phone == '') {
 		res.statusCode = 400;
@@ -169,7 +136,6 @@ app.post('/editData', function (req, res) {
 					phoneNumber: phone,
 					password: pass,
 				};
-<<<<<<< HEAD
 				dbo.collection('User').updateOne({ _id: id }, { $set: updateUser }, function (err, result) {
 					if (err) {
 						res.statusCode = 400;
@@ -183,33 +149,13 @@ app.post('/editData', function (req, res) {
 						res.send(data);
 					}
 				});
-=======
-				dbo
-					.collection('User')
-					.updateOne({ _id: id }, { $set: updateUser }, { new: true }, function (err, result) {
-						if (err) {
-							res.statusCode = 400;
-							data = { result: 'Registeration failed please try again' };
-							console.log(result);
-							res.send(data);
-						} else {
-							res.statusCode = 200;
-							data = { result: 'Data Updated Successfull', updated: updateUser };
-							console.log(result);
-							res.send(data);
-						}
-					});
->>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
 			}
 		});
 	}
 });
 app.get('/viewProducts', function (req, res) {
 	const query = req.query;
-<<<<<<< HEAD
 	res.setHeader('Access-Control-Allow-Origin', '*');
-=======
->>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
 	MongoClient.connect(url, { useNewUrlParser: true }, function (err, db) {
 		if (err) {
 			res.statusCode = 500;
@@ -221,10 +167,7 @@ app.get('/viewProducts', function (req, res) {
 				.collection('Products')
 				.find(query)
 				.toArray(function (err, result) {
-<<<<<<< HEAD
 					//console.log(result);
-=======
->>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
 					if (err) {
 						res.statusCode = 400;
 						data = { result: 'failed please try again' };
@@ -233,21 +176,13 @@ app.get('/viewProducts', function (req, res) {
 						if (!result) {
 							res.statusCode = 404;
 							data = {
-<<<<<<< HEAD
 								result: 'No product found',
-=======
-								result:
-									'No product found',
->>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
 							};
 							res.send(data);
 						} else {
 							res.statusCode = 200;
 							data = { result: result };
-<<<<<<< HEAD
 							console.log(data);
-=======
->>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
 							res.send(data);
 						}
 					}
@@ -256,7 +191,6 @@ app.get('/viewProducts', function (req, res) {
 	});
 });
 
-<<<<<<< HEAD
 app.post('/addToFavourite', function (req, res) {
 	console.log('request');
 	var userId = new ObjectID(req.body.user);
@@ -346,8 +280,6 @@ app.post('/viewfavProducts', function (req, res) {
 		}
 	});
 });
-=======
->>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
 // add dummy products using postman
 app.post('/addproducts', function (req, res) {
 	var pName = req.body.productName.trim();
@@ -385,11 +317,4 @@ app.post('/addproducts', function (req, res) {
 });
 app.listen(PORT, () => {
 	console.log(`app listening at http://localhost:${PORT}`);
-<<<<<<< HEAD
-=======
-=======
-app.listen(PORT, () => {
-	console.log(`listen to me http://localhost:${PORT}`);
->>>>>>> fe74960382a2a7d5bb60009cf4b539e865202ec9
->>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
 });
