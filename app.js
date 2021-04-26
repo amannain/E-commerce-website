@@ -1,7 +1,10 @@
 const express = require('express');
 var MongoClient = require('mongodb').MongoClient;
 var bodyParser = require('body-parser');
+<<<<<<< HEAD
 var ObjectID = require('mongodb').ObjectID;
+=======
+>>>>>>> fe74960382a2a7d5bb60009cf4b539e865202ec9
 
 const app = express();
 const PORT = 3000;
@@ -53,6 +56,7 @@ app.post('/registeration', (req, res) => {
 	}
 });
 
+<<<<<<< HEAD
 app.post('/userLogin', (req, res) => {
 	var email = req.body.email.trim();
 	var pass = req.body.pass.trim();
@@ -221,4 +225,8 @@ app.post('/addproducts', function (req, res) {
 });
 app.listen(PORT, () => {
 	console.log(`app listening at http://localhost:${PORT}`);
+=======
+app.listen(PORT, () => {
+	console.log(`listen to me http://localhost:${PORT}`);
+>>>>>>> fe74960382a2a7d5bb60009cf4b539e865202ec9
 });
