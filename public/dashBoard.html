@@ -7,14 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css" />
+<<<<<<< HEAD
     <script src="jquery/jquery-3.5.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/validation.js"></script>
     <script src="js/logout.js"></script>
+=======
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="jquery/jquery-3.5.1.min.js"></script>
+>>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
     <title>{{Welcome}}</title>
 </head>
 
 <body>
+<<<<<<< HEAD
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <a class="navbar-brand" href="#">E-commerce</a>
         <ul class="navbar-nav">
@@ -40,6 +47,26 @@
     <form class='formEdit'>
         <div class="container">
             <h3>Edit Your Data</h3>
+=======
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">E-Commerce</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="#">Products</a></li>
+                <li><a href="#">My Favourite Products</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" id='currentUser'></a></li>
+            </ul>
+        </div>
+    </nav>
+    <h2 class='title' style='font-weight:bold;margin-left:20px;'>{{Welcome}}</h2>
+    <form class='formEdit'>
+        <div class="container">
+            <h2 style='font-weight:bold;'>Edit Your Data</h2>
+>>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
             <hr>
             <div class="form-group">
                 <input type="text" placeholder="Enter Your Name" class="form-control" name="name" id="name" value=''
@@ -87,8 +114,13 @@
         $('#age').val(user.age);
         $('#phone').val(user.phoneNumber);
         $('#password').val(user.password);
+<<<<<<< HEAD
         $('title').html(`Welcome ${user.name.toUpperCase()} To The Dashboard`);
         $('.title').html(`Welcome ${user.name} To The Dashboard`);
+=======
+        $('title').html(`Welcome ${user.name.toUpperCase()} to the dashboard`);
+        $('.title').html(`Welcome ${user.name} to the dashboard`);
+>>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
         $('#currentUser').html(`<span class="glyphicon glyphicon-user"></span> ${user.email}`)
 
         $('.formEdit').submit(function (e) {
@@ -123,9 +155,15 @@
                         alert("Data: " + data.result + "\nStatus: " + status)
                         location.reload();
                     },
+<<<<<<< HEAD
                     error: function (xhr, status) {
                         console.log(data);
                         alert("Result: " + xhr.responseJSON.result + "\nStatus: " + status)
+=======
+                    error: function (xhr) {
+                        console.log(data);
+                        alert("Result: " + xhr + "\nStatus: " + status)
+>>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
                         location.reload();
                     }
                 })

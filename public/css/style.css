@@ -6,6 +6,10 @@ body {
 	background-color: bisque;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
 .navbar a {
 	font-weight: normal !important;
 	color: white !important;
@@ -14,6 +18,45 @@ body {
 .formLogin,
 .formRegisteration {
 	margin-top: 20px;
+<<<<<<< HEAD
+=======
+=======
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+li span {
+	display: block;
+	color: white;
+	font-size: 16px;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #111;
+}
+
+.formRegisteration {
+	margin-top: 30px;
+>>>>>>> fe74960382a2a7d5bb60009cf4b539e865202ec9
+>>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
 }
 
 .container {
@@ -21,18 +64,56 @@ body {
 	background-color: white;
 	width: 50%;
 	margin: auto;
+<<<<<<< HEAD
 }
+=======
+<<<<<<< HEAD
+	border: 3px solid rgb(235, 239, 250);
+}
+
+/* input[type='text'],
+=======
+}
+
+input[type='text'],
+>>>>>>> fe74960382a2a7d5bb60009cf4b539e865202ec9
+input[type='email'],
+input[type='number'],
+input[type='password'] {
+	width: 100%;
+	padding: 15px;
+	margin: 5px 0 5px 0;
+<<<<<<< HEAD
+} */
+=======
+}
+>>>>>>> fe74960382a2a7d5bb60009cf4b539e865202ec9
+>>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
 
 hr {
 	border: 1px solid black;
 	margin-bottom: 25px;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
 #editBtn,
 #loginBtn,
 #registerbtn {
 	background-color: rgb(11, 88, 139);
 	color: white;
 	padding: 10px 20px;
+<<<<<<< HEAD
+=======
+=======
+
+#registerbtn {
+	background-color: rgb(11, 88, 139);
+	color: white;
+	padding: 16px 26px;
+>>>>>>> fe74960382a2a7d5bb60009cf4b539e865202ec9
+>>>>>>> cbf300b988696e67b1451c30252f85fabfe21a09
 	margin: 8px 0;
 	border: none;
 	cursor: pointer;
