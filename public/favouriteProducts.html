@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="jquery/jquery-3.5.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/logout.js"></script>
+    <title>My Favourite Products</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">E-commerce</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="dashBoard.html">DashBoard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="products.html">Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="favouriteProducts.html">My Favourite Products</a>
+            </li>
+            <li class="nav-item" style="margin-left: 400px;">
+                <a class="nav-link" href="#" id='currentUser'></a>
+            </li>
+            <li class="nav-item ml-5">
+                <button class="btn btn-primary" onclick="logout()" id='logout'>LogOut</button>
+            </li>
+        </ul>
+    </nav>
+    <div class='container-fluid'>
+        <div class="row mt-3">
+            <div class="col-md-8">
+                <h2>Favourite Products</h2>
+            </div>
+            <div class="col-md-4">
+                <form class="form-inline my-2 my-lg-0 search" style="margin-left:90px;">
+                    <input class="form-control mr-sm-2" type="search" id="searchInput"
+                        placeholder="Search by Product Name" aria-label="Search">
+                    <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        <div class="row" id="products">
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    const user = JSON.parse(sessionStorage.getItem("currentUser"));
+    if (!user) {
+        alert('you are not logged in login to access this page')
+        location.assign('login.html');
+    }
+    $(document).ready(function () {
+        console.log(JSON.parse(sessionStorage.getItem("currentUser")));
+        $('#currentUser').html(`<span class="glyphicon glyphicon-user"></span> ${user.email}`)
+        const urlLink = 'http://localhost:3000/viewfavProducts'
+        $.ajax({
+            type: 'POST', url: urlLink,
+            data: {
+                user: user._id
+            },
+            success: function (data, status) {
+                if (data.result.length > 0) {
+                    data.result.forEach(function (el) {
+                        $('#products').append(`<div class="col-12 col-sm-8 col-md-6 col-lg-3">
+                                                 <div class="card mt-3 mb-3">
+                                                     <img class="card-img ml-5 mr-5 mt-3" style="height:150px;width:200px;" src='images/${el.productImg}'>
+                                                        <div class="card-body">
+                                                          <h4 class="card-title">${el.productName}</h4>
+                                                          <h6 class="card-subtitle mb-2 text-muted">Available Qty: ${el.availableItems}</h6>
+                                                         </div>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="price text-success">
+                                                            <h5 class="m-4">$${el.productPrice}</h5>
+                                                    </div>
+                                                      <button class="btn btn-danger m-3">Buy Now</button>
+                                                </div>
+                                          </div>`)
+                    })
+                } else {
+                    $('#products').html(`<div class="justify-content-between align-items-center">
+                        <div class= "price text-danger"> <h5 class="m-4">No Product found</h5></div >`)
+                }
+            },
+            error: function (xhr, status) {
+                console.log(xhr)
+                alert("Result: " + xhr.responseJSON.result + "\nStatus: " + status)
+                //location.reload();
+            }
+        })
+        $('.search').submit(function (event) {
+            event.preventDefault();
+            var searchName = $('#searchInput').val();
+            const urlLink = `http://localhost:3000/viewfavProducts?productName=${searchName}`
+            $.ajax({
+                type: 'POST', url: urlLink,
+                data: {
+                    user: user._id
+                },
+                success: function (data, status) {
+                    $('#products').html('');
+                    if (data.result.length > 0) {
+                        data.result.forEach(function (el) {
+                            $('#products').append(`<div class="col-12 col-sm-8 col-md-6 col-lg-3">
+                                                 <div class="card mt-3 mb-3">
+                                                     <img class="card-img ml-5 mr-5 mt-3" style="height:150px;width:200px;" src='images/${el.productImg}'>
+                                                        <div class="card-body">
+                                                          <h4 class="card-title">${el.productName}</h4>
+                                                          <h6 class="card-subtitle mb-2 text-muted">Available Qty: ${el.availableItems}</h6>
+                                                         </div>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="price text-success">
+                                                            <h5 class="m-4">$${el.productPrice}</h5>
+                                                    </div>
+                                                     <button class="btn btn-danger m-3">Buy Now</button>
+                                                </div>
+                                          </div>`)
+                        })
+                    } else {
+                        $('#products').html(`<div class="justify-content-between align-items-center">
+                        <div class="price text-danger"><h5 class="m-4">No Product found</h5> </div >`)
+                    }
+                },
+                error: function (xhr, status) {
+                    console.log(xhr)
+                    alert("Result: " + xhr.responseJSON.result + "\nStatus: " + status)
+                    //location.reload();
+                }
+            })
+        })
+    })
+</script>
